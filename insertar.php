@@ -22,10 +22,11 @@ if(isset($_POST["botonEnvio"])){
     $consultaSQL2= "INSERT INTO movimiento(hora_entrada,placaAuto) VALUES ('$entrada','$placa')";
 
     $transaccion->agregarDatos($consultaSQL);
-
-    
-
     $transaccion->agregarDatos($consultaSQL2);
+
+    if($transaccion){
+        header("location: index.php");
+    }
     
 
    
