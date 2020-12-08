@@ -41,10 +41,13 @@ public function agregarDatos($consultaSQL){
 
     
     if($resultado){
+        $respuesta=1;
         echo("se agrego el registro con éxito");
     }else{
+        $respuesta=0;
         echo("Error agregando el registro");
     }
+    return $respuesta;
     
 }
 
@@ -64,6 +67,28 @@ public function consultarDatos($consultaSQL){
 
   
     return($consultaBuscarDatos->fetchAll());
+}
+
+public function editarDatos($consultaSQL){
+
+    //1. Establecer una conexión con la BD
+    $conexionBD=$this->conectarBD();
+   
+    //2. Peparar la consulta
+    $consultaEditarDatos=$conexionBD->prepare($consultaSQL);
+
+    //3. Ejecutar la consulta
+    $resultado=$consultaEditarDatos->execute();
+
+    //4. Verificar el resultado
+    if($resultado){
+        echo("se editó el registro con éxito");
+    }else{
+        echo("Error editando el registro");
+    }
+
+
+
 }
 
 }
